@@ -11,7 +11,7 @@ import { Account, NotificationResponse } from '../../models/models';
     <div class="d-flex justify-content-between align-items-start mb-4">
       <div>
         <h1 class="section-title mb-1">Dashboard</h1>
-        <p class="section-sub mb-0">Overview of your banking activity</p>
+        
       </div>
 
       @if (accountsList().length > 1) {

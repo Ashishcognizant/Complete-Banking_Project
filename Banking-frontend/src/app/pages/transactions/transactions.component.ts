@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/api.service';
 import { ToastService } from '../../core/toast.service';
 import { AuthService } from '../../core/auth.service';
-import { TransactionResponse } from '../../models/models';
+import { Account, TransactionResponse } from '../../models/models';
 
 @Component({
   selector: 'app-transactions',
@@ -22,55 +22,86 @@ import { TransactionResponse } from '../../models/models';
     <div class="glass-card" style="max-width:480px">
 
       @if (tab() === 'deposit') {
-        <form (ngSubmit)="doDeposit()" #df="ngForm">
-          <div class="mb-3">
-            <label class="form-label">Account ID</label>
-            <input type="number" class="form-control" [(ngModel)]="dep.accountId" name="accId" required min="1" placeholder="Enter account ID">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Amount (₹)</label>
-            <input type="number" class="form-control" [(ngModel)]="dep.amount" name="amount" required min="1" placeholder="Enter amount">
-          </div>
-          <button type="submit" class="btn-accent w-100" [disabled]="loading() || df.invalid">
-            {{ loading() ? 'Processing…' : 'Deposit' }}
-          </button>
-        </form>
+        @if (myAccounts().length === 0) {
+          <p class="text-muted">No active accounts found.</p>
+        } @else {
+          <form (ngSubmit)="doDeposit()" #df="ngForm">
+            <div class="mb-3">
+              <label class="form-label">Your Account</label>
+              <select class="form-control" [(ngModel)]="dep.accountId" name="accId" required>
+                @for (acc of myAccounts(); track acc.accountID) {
+                  <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }} — ₹{{ acc.balance.toFixed(2) }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amount (₹)</label>
+              <input type="number" class="form-control" [(ngModel)]="dep.amount" name="amount" required min="1" placeholder="Enter amount">
+            </div>
+            <button type="submit" class="btn-accent w-100" [disabled]="loading() || df.invalid">
+              {{ loading() ? 'Processing…' : 'Deposit' }}
+            </button>
+          </form>
+        }
       }
 
       @if (tab() === 'withdraw') {
-        <form (ngSubmit)="doWithdraw()" #wf="ngForm">
-          <div class="mb-3">
-            <label class="form-label">Account ID</label>
-            <input type="number" class="form-control" [(ngModel)]="wit.accountId" name="accId" required min="1" placeholder="Enter account ID">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Amount (₹)</label>
-            <input type="number" class="form-control" [(ngModel)]="wit.amount" name="amount" required min="1" placeholder="Enter amount">
-          </div>
-          <button type="submit" class="btn-accent w-100" [disabled]="loading() || wf.invalid">
-            {{ loading() ? 'Processing…' : 'Withdraw' }}
-          </button>
-        </form>
+        @if (myAccounts().length === 0) {
+          <p class="text-muted">No active accounts found.</p>
+        } @else {
+          <form (ngSubmit)="doWithdraw()" #wf="ngForm">
+            <div class="mb-3">
+              <label class="form-label">Your Account</label>
+              <select class="form-control" [(ngModel)]="wit.accountId" name="accId" required>
+                @for (acc of myAccounts(); track acc.accountID) {
+                  <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }} — ₹{{ acc.balance.toFixed(2) }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amount (₹)</label>
+              <input type="number" class="form-control" [(ngModel)]="wit.amount" name="amount" required min="1" placeholder="Enter amount">
+            </div>
+            <button type="submit" class="btn-accent w-100" [disabled]="loading() || wf.invalid">
+              {{ loading() ? 'Processing…' : 'Withdraw' }}
+            </button>
+          </form>
+        }
       }
 
       @if (tab() === 'transfer') {
-        <form (ngSubmit)="doTransfer()" #tf="ngForm">
-          <div class="mb-3">
-            <label class="form-label">From Account ID</label>
-            <input type="number" class="form-control" [(ngModel)]="tra.accountId" name="fromId" required min="1" placeholder="Your account ID">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">To Account ID</label>
-            <input type="number" class="form-control" [(ngModel)]="tra.toAccountId" name="toId" required min="1" placeholder="Recipient account ID">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Amount (₹)</label>
-            <input type="number" class="form-control" [(ngModel)]="tra.amount" name="amount" required min="1" placeholder="Enter amount">
-          </div>
-          <button type="submit" class="btn-accent w-100" [disabled]="loading() || tf.invalid">
-            {{ loading() ? 'Processing…' : 'Transfer' }}
-          </button>
-        </form>
+        @if (myAccounts().length === 0) {
+          <p class="text-muted">No active accounts found.</p>
+        } @else {
+          <form (ngSubmit)="doTransfer()" #tf="ngForm">
+            <div class="mb-3">
+              <label class="form-label">From Account</label>
+              <select class="form-control" [(ngModel)]="tra.accountId" name="fromId" required (ngModelChange)="tra.toAccountId = 0">
+                @for (acc of myAccounts(); track acc.accountID) {
+                  <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }} — ₹{{ acc.balance.toFixed(2) }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">To Account</label>
+              <select class="form-control" [(ngModel)]="tra.toAccountId" name="toId" required>
+                <option [value]="0" disabled>Select recipient account</option>
+                @for (acc of myAccounts(); track acc.accountID) {
+                  @if (acc.accountID !== tra.accountId) {
+                    <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }} — ₹{{ acc.balance.toFixed(2) }}</option>
+                  }
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amount (₹)</label>
+              <input type="number" class="form-control" [(ngModel)]="tra.amount" name="amount" required min="1" placeholder="Enter amount">
+            </div>
+            <button type="submit" class="btn-accent w-100" [disabled]="loading() || tf.invalid || tra.toAccountId === 0">
+              {{ loading() ? 'Processing…' : 'Transfer' }}
+            </button>
+          </form>
+        }
       }
 
       @if (result()) {
@@ -88,9 +119,10 @@ export class TransactionsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private auth  = inject(AuthService);
 
-  tab     = signal('deposit');
-  loading = signal(false);
-  result  = signal<TransactionResponse | null>(null);
+  tab        = signal('deposit');
+  loading    = signal(false);
+  result     = signal<TransactionResponse | null>(null);
+  myAccounts  = signal<Account[]>([]);
 
   dep = { accountId: 0, amount: 0 };
   wit = { accountId: 0, amount: 0 };
@@ -98,6 +130,18 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(p => { if (p['tab']) this.tab.set(p['tab']); });
+    this.api.getMyAccounts().subscribe({
+      next: accounts => {
+        this.myAccounts.set(accounts);
+        if (accounts.length > 0) {
+          this.dep.accountId = accounts[0].accountID;
+          this.wit.accountId = accounts[0].accountID;
+          this.tra.accountId = accounts[0].accountID;
+        }
+      },
+      error: () => this.toast.error('Failed to load accounts')
+    });
+
   }
 
   doDeposit() {

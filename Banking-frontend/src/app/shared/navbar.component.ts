@@ -9,7 +9,7 @@ import { ApiService } from '../core/api.service';
   template: `
     <nav class="topbar">
       <div class="tb-left">
-        👋 Welcome back, <strong>{{ auth.currentUser()?.name || 'User' }}</strong>
+        👋 Welcome back, <strong>{{ (auth.currentUser()?.name || 'User').toUpperCase() }}</strong>
       </div>
       <div class="tb-right">
         <a routerLink="/notifications" class="tb-bell">

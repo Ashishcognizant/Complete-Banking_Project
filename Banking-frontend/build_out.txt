@@ -1,0 +1,15 @@
+﻿npx : Node.js version v19.6.0 detected.
+At line:1 char:1
++ npx ng build --configuration=development 2>&1 | Out-File -FilePath bu ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Node.js version v19.6.0 detected.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, 
+please see https://nodejs.org/en/about/previous-releases/.
+Unknown error: Error [ERR_REQUIRE_ESM]: require() of ES Module C:\Users\Ashish\OneDrive\Desktop\New folder\Banking-Micr
+oservice-final-main\Banking-Microservice-final-main\Banking-frontend\node_modules\yargs\helpers\helpers.mjs not 
+supported.
+Instead change the require of C:\Users\Ashish\OneDrive\Desktop\New folder\Banking-Microservice-final-main\Banking-Micro
+service-final-main\Banking-frontend\node_modules\yargs\helpers\helpers.mjs to a dynamic import() which is available in 
+all CommonJS modules.

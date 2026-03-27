@@ -1,0 +1,19 @@
+﻿npx : file:///C:/Users/Ashish/OneDrive/Desktop/New%20folder/Banking-Microservice-final-main/Banking-Microservice-final-
+main/Banking-frontend/node_modules/yargs-parser/build/lib/index.js:25
+At line:1 char:1
++ npx ngc --noEmit -p tsconfig.app.json 2>&1 | Out-File -FilePath ngc_o ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (file:///C:/User...lib/index.js:25:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+        throw Error(`yargs parser supports a minimum Node.js version of ${minNodeVersion}. Read our version support 
+policy: https://github.com/yargs/yargs-parser#supported-nodejs-versions`);
+              ^
+
+Error: yargs parser supports a minimum Node.js version of 20. Read our version support policy: 
+https://github.com/yargs/yargs-parser#supported-nodejs-versions
+    at file:///C:/Users/Ashish/OneDrive/Desktop/New%20folder/Banking-Microservice-final-main/Banking-Microservice-final
+-main/Banking-frontend/node_modules/yargs-parser/build/lib/index.js:25:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+
+Node.js v19.6.0

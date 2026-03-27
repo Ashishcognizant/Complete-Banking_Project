@@ -15,7 +15,7 @@ export interface TransactionRequest  { accountId: number; toAccountId?: number; 
 export interface TransactionResponse { message: string; updatedBalance: number; accountId: number; }
 
 // ── Notifications ────────────────────────────────────────────────────────
-export interface NotificationResponse { notificationId: number; userId: number; message: string; read: boolean; createdAt: string; }
+export interface NotificationResponse { notificationId: number; userId: number; message: string; status: string; read: boolean; createdAt: string; readAt?: string; }
 export interface SendNotificationRequest { userId: number; message: string; }
 
 // ── Analytics ────────────────────────────────────────────────────────────

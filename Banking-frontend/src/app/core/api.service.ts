@@ -15,6 +15,8 @@ export class ApiService {
   // ── Accounts ──────────────────────────────────────────────────────────
   getMyAccounts(): Observable<Account[]>                              { return this.http.get<Account[]>(`${this.G}/accounts/my`); }
   getAllAccounts(): Observable<Account[]>                             { return this.http.get<Account[]>(`${this.G}/accounts`); }
+  getAllAccountsForUsers(): Observable<Account[]>                     { return this.http.get<Account[]>(`${this.G}/accounts/all`); }
+  getActiveAccounts(): Observable<Account[]>                         { return this.http.get<Account[]>(`${this.G}/accounts/active`); }
   getAccount(id: number): Observable<Account>                        { return this.http.get<Account>(`${this.G}/accounts/${id}`); }
   createAccount(a: Partial<Account>): Observable<Account>            { return this.http.post<Account>(`${this.G}/accounts`, a); }
   updateStatus(id: number, status: string): Observable<Account>      { return this.http.put<Account>(`${this.G}/accounts/${id}/status?status=${status}`, {}); }

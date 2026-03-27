@@ -27,6 +27,14 @@ public class AccountController {
         return accountService.getAccountsByUserId(userId);
     }
 
+    @GetMapping("/all")
+    public List<Account> getAllAccountsForUsers(HttpServletRequest request) {
+        if (request.getAttribute("userId") == null) {
+            throw new UnauthorizedException("Unable to identify user. Please log in again.");
+        }
+        return accountService.getAllAccounts();
+    }
+
     @PostMapping
     public Account createAccount(@RequestBody Account account, HttpServletRequest request) {
         checkAdmin((String) request.getAttribute("userRole"));
@@ -43,6 +51,15 @@ public class AccountController {
     public List<Account> getAllAccounts(HttpServletRequest request) {
         checkAdmin((String) request.getAttribute("userRole"));
         return accountService.getAllAccounts();
+    }
+    
+    @GetMapping("/active")
+    public List<Account> getActiveAccounts(HttpServletRequest request) {
+        Long userId = (Long) request.getAttribute("userId");
+        if (userId == null) {
+            throw new UnauthorizedException("Unable to identify user. Please log in again.");
+        }
+        return accountService.getActiveAccounts();
     }
 
     @PutMapping("/{id}/status")

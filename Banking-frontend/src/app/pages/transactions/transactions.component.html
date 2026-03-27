@@ -74,10 +74,8 @@
           <label class="form-label">To Account</label>
           <select class="form-control" [(ngModel)]="tra.toAccountId" name="toId" required>
             <option [value]="0" disabled>Select recipient account</option>
-            @for (acc of myAccounts(); track acc.accountID) {
-              @if (acc.accountID !== tra.accountId) {
-                <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }} — ₹{{ acc.balance.toFixed(2) }}</option>
-              }
+            @for (acc of otherAccounts(); track acc.accountID) {
+              <option [value]="acc.accountID">Account #{{ acc.accountID }} — {{ acc.accountType }}</option>
             }
           </select>
         </div>

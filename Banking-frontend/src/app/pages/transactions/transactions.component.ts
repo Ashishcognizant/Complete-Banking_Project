@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/api.service';
@@ -18,10 +18,15 @@ export class TransactionsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private auth  = inject(AuthService);
 
-  tab        = signal('deposit');
-  loading    = signal(false);
-  result     = signal<TransactionResponse | null>(null);
-  myAccounts = signal<Account[]>([]);
+  tab           = signal('deposit');
+  loading       = signal(false);
+  result        = signal<TransactionResponse | null>(null);
+  myAccounts    = signal<Account[]>([]);
+  allAccounts   = signal<Account[]>([]);
+  otherAccounts = computed(() => {
+    const myIds = new Set(this.myAccounts().map(a => a.accountID));
+    return this.allAccounts().filter(a => !myIds.has(a.accountID));
+  });
 
   dep = { accountId: 0, amount: 0 };
   wit = { accountId: 0, amount: 0 };
@@ -39,6 +44,10 @@ export class TransactionsComponent implements OnInit {
         }
       },
       error: () => this.toast.error('Failed to load accounts')
+    });
+    this.api.getAllAccountsForUsers().subscribe({
+      next: accounts => this.allAccounts.set(accounts),
+      error: () => {}
     });
   }
 

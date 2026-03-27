@@ -69,6 +69,10 @@ public class AccountService {
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }
+    
+    public List<Account> getActiveAccounts() {
+        return accountRepository.findByStatus("Active");
+    }
 
     public List<Account> getAccountsByUserId(Long userId) {
         return accountRepository.findByUserID(userId);

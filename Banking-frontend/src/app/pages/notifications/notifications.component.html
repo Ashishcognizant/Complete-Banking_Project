@@ -5,18 +5,18 @@
   @if (notifications().length === 0) {
     <div class="empty-state">
       <div class="empty-icon">🔔</div>
-      No notifications yet
+      No notifications
     </div>
   } @else {
     @for (n of notifications(); track n.notificationId) {
-      <div class="notif-item" [class.unread]="!n.read">
+      <div class="notif-item" [class.unread]="n.status !== 'READ'">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
           <div>
             <div style="font-size:.9rem">{{ n.message }}</div>
             <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">{{ n.createdAt }}</div>
           </div>
           <div style="flex-shrink:0">
-            @if (!n.read) {
+            @if (n.status !== 'READ') {
               <button class="btn-outline btn-sm" (click)="markRead(n)">Mark Read</button>
             } @else {
               <span class="badge-success">Read</span>

@@ -9,6 +9,7 @@ import com.cts.account.model.AccountType;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findByUserID(Long userID);
+    List<Account> findByStatus(String status);
 
     boolean existsByUserID(Long userID);
     boolean existsByUserIDAndAccountType(Long userID, AccountType accountType);

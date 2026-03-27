@@ -20,6 +20,39 @@
   --navbar-height: 64px;
 }
 
+/* ── Light Mode ── */
+body.light {
+  --primary: #f0f4ff;
+  --primary-light: #e2e8f7;
+  --surface: #ffffff;
+  --surface-light: #f1f5fb;
+  --accent: #b8912e;
+  --accent-light: #d4a843;
+  --accent-dark: #8a6a1e;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --info: #2563eb;
+}
+
+body.light { background: var(--primary); color: var(--text); }
+body.light .glass-card { background: rgba(255,255,255,0.9); border-color: rgba(184,145,46,.2); }
+body.light .glass-card:hover { border-color: rgba(184,145,46,.4); }
+body.light .stat-card { background: rgba(255,255,255,.9); border-color: rgba(184,145,46,.15); }
+body.light .quick-action { background: #fff; border-color: rgba(100,116,139,.15); color: var(--text); }
+body.light .quick-action:hover { background: rgba(184,145,46,.06); border-color: var(--accent); color: var(--text); }
+body.light .tbl thead th { background: #f1f5fb; }
+body.light .tbl tbody tr:hover { background: rgba(184,145,46,.04); }
+body.light .form-control, body.light .form-select { background: #f8fafc !important; border-color: rgba(100,116,139,.25) !important; color: var(--text) !important; }
+body.light .notif-item:hover { background: rgba(184,145,46,.05); }
+body.light .auth-page { background: linear-gradient(135deg,#e8f0fe,#f0f4ff,#fef9ec); }
+body.light .auth-card { background: rgba(255,255,255,.95); border-color: rgba(184,145,46,.2); }
+body.light html::after { opacity: 0.04; }
+body.light body::before { opacity: 0.03; }
+body.light body::after { opacity: 0.05; }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
@@ -241,3 +274,12 @@ body::after {
 @media (max-width: 768px) {
   .page-content { margin-left: 0; padding: 16px; }
 }
+
+/* ── Theme Toggle Button ── */
+.theme-toggle { background: transparent; border: 1.5px solid rgba(212,168,67,.3); color: var(--text-muted); width: 36px; height: 36px; border-radius: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all .2s; }
+.theme-toggle:hover { background: rgba(212,168,67,.08); color: var(--text); border-color: var(--accent); }
+
+/* ── Light Mode Sidebar & Navbar ── */
+body.light .sidebar { background: linear-gradient(180deg,#1e3a5f,#162d4a); }
+body.light .topbar { background: rgba(255,255,255,.92); border-bottom-color: rgba(184,145,46,.15); color: var(--text-muted); }
+body.light .topbar strong { color: var(--text); }

@@ -3,6 +3,9 @@
     👋 Welcome back, <strong>{{ (auth.currentUser()?.name || 'User').toUpperCase() }}</strong>
   </div>
   <div class="tb-right">
+    <button class="theme-toggle" (click)="theme.toggle()" [title]="theme.isDark() ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+      {{ theme.isDark() ? '☀️' : '🌙' }}
+    </button>
     <a routerLink="/notifications" class="tb-bell">
       🔔
       @if (auth.unreadCount() > 0) {

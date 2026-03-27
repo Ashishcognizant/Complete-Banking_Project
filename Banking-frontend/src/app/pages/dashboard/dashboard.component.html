@@ -1,8 +1,9 @@
 <div class="d-flex justify-content-between align-items-start mb-4">
   <div>
     <h1 class="section-title mb-1">Dashboard</h1>
+    <p class="section-sub mb-0">Welcome, {{ auth.currentUser()?.name?.toUpperCase() }}</p>
   </div>
- 
+
   @if (accountsList().length > 1) {
     <div class="tab-list" style="margin-bottom:0 !important; padding:4px">
       @for (a of accountsList(); track a.accountID) {
@@ -15,7 +16,7 @@
     </div>
   }
 </div>
- 
+
 <!-- Stat Cards -->
 <div class="row g-3 mb-4">
   <div class="col-6 col-md-3">
@@ -49,46 +50,46 @@
     </div>
   </div>
 </div>
- 
+
 <!-- Quick Actions -->
-<h2 class="quick-title">Quick Actions</h2>
+<h2 class="quick-actions-title">Quick Actions</h2>
 <div class="row g-3 mb-4">
   <div class="col-6 col-md-3">
     <a routerLink="/transactions" [queryParams]="{tab:'deposit'}" class="quick-action">
-      <div class="qa-icon" style="background:#dcfce7;color:#16a34a">��</div>
+      <div class="qa-icon" style="background:rgba(34,197,94,.12);color:var(--success)">💰</div>
       <span style="font-size:.88rem;font-weight:500">Deposit</span>
     </a>
   </div>
   <div class="col-6 col-md-3">
     <a routerLink="/transactions" [queryParams]="{tab:'withdraw'}" class="quick-action">
-      <div class="qa-icon" style="background:#fee2e2;color:#dc2626">��</div>
+      <div class="qa-icon" style="background:rgba(239,68,68,.12);color:var(--danger)">🏧</div>
       <span style="font-size:.88rem;font-weight:500">Withdraw</span>
     </a>
   </div>
   <div class="col-6 col-md-3">
     <a routerLink="/transactions" [queryParams]="{tab:'transfer'}" class="quick-action">
-      <div class="qa-icon" style="background:#dbeafe;color:#2563eb">��</div>
+      <div class="qa-icon" style="background:rgba(59,130,246,.12);color:var(--info)">🔄</div>
       <span style="font-size:.88rem;font-weight:500">Transfer</span>
     </a>
   </div>
   <div class="col-6 col-md-3">
     <a routerLink="/notifications" class="quick-action">
-      <div class="qa-icon" style="background:#fef3c7;color:#d97706">��</div>
+      <div class="qa-icon" style="background:rgba(245,158,11,.12);color:var(--warning)">🔔</div>
       <span style="font-size:.88rem;font-weight:500">Alerts</span>
     </a>
   </div>
 </div>
- 
-<!-- Recent Notifications -->
+
+<!-- Unread Notifications -->
 <div class="glass-card">
-  <h3 class="card-heading">Unread Notifications</h3>
+  <h3 class="notif-heading">Unread Notifications</h3>
   @if (notifications().length === 0) {
-    <p class="empty-text">No unread notifications</p>
+    <p style="color:var(--text-muted);font-size:.88rem;padding:10px 0">No unread notifications</p>
   } @else {
     @for (n of notifications().slice(0, 5); track n.notificationId) {
       <div class="notif-item unread">
         <div style="font-size:.88rem">{{ n.message }}</div>
-        <div class="notif-time">{{ n.createdAt }}</div>
+        <div style="font-size:.74rem;color:var(--text-muted);margin-top:3px">{{ n.createdAt }}</div>
       </div>
     }
     @if (notifications().length > 5) {

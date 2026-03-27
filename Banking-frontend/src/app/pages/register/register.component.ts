@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { ToastService } from '../../core/toast.service';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent {
   private auth   = inject(AuthService);
   private router = inject(Router);
   private toast  = inject(ToastService);
+  theme          = inject(ThemeService);
 
   d = { name: '', role: '', email: '', phone: '', password: '' };
   loading = signal(false);

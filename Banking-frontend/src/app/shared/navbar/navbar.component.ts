@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { ApiService } from '../../core/api.service';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { ApiService } from '../../core/api.service';
 })
 export class NavbarComponent implements OnInit {
   auth        = inject(AuthService);
+  theme       = inject(ThemeService);
   private api = inject(ApiService);
   open        = signal(false);
 

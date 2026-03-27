@@ -6,7 +6,7 @@ export const routes: Routes = [
   { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent) },
   {
     path: '',
-    loadComponent: () => import('./shared/layout.component').then(m => m.LayoutComponent),
+    loadComponent: () => import('./shared/layout/layout.component').then(m => m.LayoutComponent),
     canActivate: [authGuard],
     children: [
       { path: 'dashboard',          loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent) },

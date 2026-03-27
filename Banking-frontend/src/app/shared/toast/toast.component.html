@@ -1,0 +1,12 @@
+<div class="toast-host">
+  @for (t of toast.toasts(); track t) {
+    <div class="toast-msg" [class]="'toast-' + t.type">
+      @switch (t.type) {
+        @case ('success') { ✅ }
+        @case ('error')   { ❌ }
+        @default          { ℹ️ }
+      }
+      {{ t.message }}
+    </div>
+  }
+</div>

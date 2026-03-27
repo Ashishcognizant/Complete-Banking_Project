@@ -1,0 +1,41 @@
+<aside class="sidebar">
+  <div class="sb-brand">
+    <span class="sb-icon">🏦</span>
+    <span class="sb-name">CTS-BANK</span>
+  </div>
+
+  <nav class="sb-nav">
+    <a routerLink="/dashboard"     routerLinkActive="sb-active" class="sb-link">
+      <span class="sb-li">📊</span> Dashboard
+    </a>
+    <a routerLink="/account"       routerLinkActive="sb-active" class="sb-link">
+      <span class="sb-li">💳</span> My Account
+    </a>
+    <a routerLink="/transactions"  routerLinkActive="sb-active" class="sb-link">
+      <span class="sb-li">💸</span> Transactions
+    </a>
+    <a routerLink="/notifications" routerLinkActive="sb-active" class="sb-link">
+      <span class="sb-li">🔔</span> Notifications
+    </a>
+    <a routerLink="/profile"       routerLinkActive="sb-active" class="sb-link">
+      <span class="sb-li">👤</span> Profile Settings
+    </a>
+
+    @if (auth.isAdmin()) {
+      <div class="sb-divider">Admin</div>
+      <a routerLink="/user-management"    routerLinkActive="sb-active" class="sb-link">
+        <span class="sb-li">👥</span> User Management
+      </a>
+      <a routerLink="/account-management" routerLinkActive="sb-active" class="sb-link">
+        <span class="sb-li">🏛️</span> Account Management
+      </a>
+    }
+
+    @if (auth.canAnalytics()) {
+      <div class="sb-divider">Reports</div>
+      <a routerLink="/analytics" routerLinkActive="sb-active" class="sb-link">
+        <span class="sb-li">📈</span> Analytics Reports
+      </a>
+    }
+  </nav>
+</aside>

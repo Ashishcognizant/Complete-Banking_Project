@@ -1,0 +1,10 @@
+.sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background: linear-gradient(180deg, #0d1b2e, #091422); border-right: 1px solid rgba(212,168,67,.08); z-index: 100; display: flex; flex-direction: column; overflow-y: auto; }
+.sb-brand { padding: 22px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(212,168,67,.1); }
+.sb-icon { font-size: 1.6rem; }
+.sb-name { font-size: 1.3rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; }
+.sb-nav { padding: 14px 10px; display: flex; flex-direction: column; gap: 3px; }
+.sb-link { display: flex; align-items: center; gap: 11px; padding: 11px 14px; color: var(--text-muted); text-decoration: none; border-radius: 10px; font-size: .88rem; font-weight: 500; transition: all .2s; }
+.sb-link:hover { background: rgba(212,168,67,.06); color: var(--text); }
+.sb-active { background: rgba(212,168,67,.1) !important; color: var(--accent) !important; font-weight: 600; }
+.sb-li { font-size: 1.05rem; width: 22px; text-align: center; }
+.sb-divider { padding: 14px 14px 5px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }

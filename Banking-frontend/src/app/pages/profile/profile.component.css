@@ -1,0 +1,2 @@
+.profile-header { background: var(--surface); border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 14px; }
+.profile-avatar { width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }

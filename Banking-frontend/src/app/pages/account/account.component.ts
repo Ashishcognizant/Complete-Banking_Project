@@ -10,9 +10,13 @@ import { Account } from '../../models/models';
 })
 export class AccountComponent implements OnInit {
   private api = inject(ApiService);
-  account = signal<Account | null>(null);
+  accounts = signal<Account[]>([]);
+  selected = signal<Account | null>(null);
 
   ngOnInit() {
-    this.api.getMyAccounts().subscribe({ next: a => { if (a.length) this.account.set(a[0]); }, error: () => {} });
+    this.api.getMyAccounts().subscribe({
+      next: a => { this.accounts.set(a); if (a.length) this.selected.set(a[0]); },
+      error: () => {}
+    });
   }
 }

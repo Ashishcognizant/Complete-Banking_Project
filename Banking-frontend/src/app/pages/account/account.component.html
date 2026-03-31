@@ -1,39 +1,49 @@
 <h1 class="section-title">My Account</h1>
 <p class="section-sub">Your bank account details</p>
 
-@if (!account()) {
+@if (accounts().length === 0) {
   <div class="glass-card text-center" style="padding:48px">
     <div style="font-size:3rem;margin-bottom:12px">🏦</div>
     <p style="color:var(--text-muted)">You don't have a bank account yet.</p>
     <p style="color:var(--text-muted);font-size:.83rem;margin-top:6px">Contact an administrator to create one.</p>
   </div>
 } @else {
+  @if (accounts().length > 1) {
+    <div class="tab-list">
+      @for (a of accounts(); track a.accountID) {
+        <button class="tab-item" [class.active]="selected()?.accountID === a.accountID" (click)="selected.set(a)">
+          {{ a.accountType === 'SAVINGS' ? '💰 Savings' : '💳 Current' }}
+        </button>
+      }
+    </div>
+  }
+
   <div class="glass-card">
     <div class="row">
       <div class="col-md-6">
         <div class="detail-row">
           <span class="dl">Account ID</span>
-          <span class="dv">#{{ account()!.accountID }}</span>
+          <span class="dv">#{{ selected()!.accountID }}</span>
         </div>
         <div class="detail-row">
           <span class="dl">Account Type</span>
-          <span class="dv">{{ account()!.accountType }}</span>
+          <span class="dv">{{ selected()!.accountType }}</span>
         </div>
         <div class="detail-row">
           <span class="dl">Status</span>
-          <span [class]="account()!.status === 'Active' ? 'badge-success' : 'badge-danger'">
-            {{ account()!.status }}
+          <span [class]="selected()!.status === 'Active' ? 'badge-success' : 'badge-danger'">
+            {{ selected()!.status }}
           </span>
         </div>
       </div>
       <div class="col-md-6">
         <div class="detail-row">
           <span class="dl">User ID</span>
-          <span class="dv">#{{ account()!.userID }}</span>
+          <span class="dv">#{{ selected()!.userID }}</span>
         </div>
         <div class="detail-row">
           <span class="dl">Current Balance</span>
-          <div class="balance">₹{{ account()!.balance.toFixed(2) }}</div>
+          <div class="balance">₹{{ selected()!.balance.toFixed(2) }}</div>
         </div>
       </div>
     </div>

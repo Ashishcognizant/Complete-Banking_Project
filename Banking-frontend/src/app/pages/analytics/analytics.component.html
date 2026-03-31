@@ -51,7 +51,7 @@
               <td><span class="badge-success">{{ t.deposits || 0 }}</span></td>
               <td><span class="badge-danger">{{ t.withdrawals || 0 }}</span></td>
               <td><span class="badge-accent">{{ t.transfers || 0 }}</span></td>
-              <td>₹{{ t.totalAmount?.toFixed(2) }}</td>
+              <td>₹{{ t.totalAmount.toFixed(2) }}</td>
             </tr>
           }
         </tbody>
@@ -76,7 +76,7 @@
               <td>#{{ r.reportId }}</td>
               <td style="font-size:.8rem">{{ r.period }}</td>
               <td>{{ r.totalTransactions }}</td>
-              <td>₹{{ r.totalAmount?.toFixed(2) }}</td>
+              <td>₹{{ r.totalAmount.toFixed(2) }}</td>
               <td><span [class]="r.fraudAlerts > 0 ? 'badge-danger' : 'badge-success'">{{ r.fraudAlerts }}</span></td>
               <td style="font-size:.8rem">{{ r.generatedAt }}</td>
             </tr>

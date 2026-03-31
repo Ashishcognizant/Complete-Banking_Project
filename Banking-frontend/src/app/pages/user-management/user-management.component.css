@@ -1,1 +1,34 @@
-/* User management styles — global table styles are in styles.css */
+.notify-btn {
+  background: rgba(212,168,67,.1);
+  border: 1px solid rgba(212,168,67,.25);
+  color: var(--accent);
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .95rem;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.notify-btn:hover { background: rgba(212,168,67,.22); transform: scale(1.1); }
+
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-box {
+  background: var(--surface);
+  border: 1px solid rgba(212,168,67,.2);
+  border-radius: 16px;
+  padding: 28px;
+  width: 100%; max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+.modal-title { font-size: 1.05rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.modal-sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; }
+.modal-sub strong { color: var(--text); }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }

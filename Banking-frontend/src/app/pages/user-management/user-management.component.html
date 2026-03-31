@@ -8,7 +8,7 @@
     <div style="overflow-x:auto">
       <table class="tbl">
         <thead>
-          <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th></tr>
+          <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Notify</th></tr>
         </thead>
         <tbody>
           @for (u of users(); track u.userId) {
@@ -24,6 +24,9 @@
                   @default          { <span class="badge-info">CUSTOMER</span> }
                 }
               </td>
+              <td>
+                <button class="notify-btn" (click)="openNotify(u)" title="Send Notification">🔔</button>
+              </td>
             </tr>
           }
         </tbody>
@@ -31,3 +34,20 @@
     </div>
   }
 </div>
+
+<!-- Notification Modal -->
+@if (selectedUser()) {
+  <div class="modal-backdrop" (click)="closeNotify()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <h3 class="modal-title">Send Notification</h3>
+      <p class="modal-sub">To: <strong>{{ selectedUser()!.name }}</strong> ({{ selectedUser()!.role }})</p>
+      <textarea class="form-control" rows="4" [(ngModel)]="message" placeholder="Type your message e.g. Your KYC is approved"></textarea>
+      <div class="modal-actions">
+        <button class="btn-outline btn-sm" (click)="closeNotify()">Cancel</button>
+        <button class="btn-accent btn-sm" (click)="sendNotify()" [disabled]="sending() || !message.trim()">
+          {{ sending() ? 'Sending…' : 'Send' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

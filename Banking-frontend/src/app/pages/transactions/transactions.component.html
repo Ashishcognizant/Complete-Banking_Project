@@ -11,7 +11,7 @@
 
   @if (tab() === 'deposit') {
     @if (myAccounts().length === 0) {
-      <p class="text-muted">No active accounts found.</p>
+      <p class="no-account-msg">No active accounts found.</p>
     } @else {
       <form (ngSubmit)="doDeposit()" #df="ngForm">
         <div class="mb-3">
@@ -35,7 +35,7 @@
 
   @if (tab() === 'withdraw') {
     @if (myAccounts().length === 0) {
-      <p class="text-muted">No active accounts found.</p>
+      <p class="no-account-msg">No active accounts found.</p>
     } @else {
       <form (ngSubmit)="doWithdraw()" #wf="ngForm">
         <div class="mb-3">
@@ -59,7 +59,7 @@
 
   @if (tab() === 'transfer') {
     @if (myAccounts().length === 0) {
-      <p class="text-muted">No active accounts found.</p>
+      <p class="no-account-msg">No active accounts found.</p>
     } @else {
       <form (ngSubmit)="doTransfer()" #tf="ngForm">
         <div class="mb-3">

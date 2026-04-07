@@ -9,26 +9,37 @@ import { ThemeService } from '../../core/theme.service';
   selector: 'app-login',
   imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  private auth   = inject(AuthService);
+  private auth = inject(AuthService);
   private router = inject(Router);
-  private toast  = inject(ToastService);
-  theme          = inject(ThemeService);
+  private toast = inject(ToastService);
+  theme = inject(ThemeService);
 
-  email    = ''; password = '';
-  showPwd  = signal(false);
-  loading  = signal(false);
+  email = '';
+  password = '';
+  showPwd = signal(false);
+  loading = signal(false);
 
   onLogin() {
     this.loading.set(true);
     this.auth.login({ email: this.email, password: this.password }).subscribe({
-      next: () => this.auth.fetchProfile().subscribe({
-        next: () => { this.toast.success('Welcome back!'); this.router.navigate(['/dashboard']); },
-        error: () => { this.loading.set(false); this.toast.error('Could not load profile'); }
-      }),
-      error: e => { this.loading.set(false); this.toast.error(e.error?.message || 'Invalid email or password'); }
+      next: () =>
+        this.auth.fetchProfile().subscribe({
+          next: () => {
+            this.toast.success('Welcome back!');
+            this.router.navigate(['/dashboard']);
+          },
+          error: () => {
+            this.loading.set(false);
+            this.toast.error('Could not load profile');
+          },
+        }),
+      error: (e) => {
+        this.loading.set(false);
+        this.toast.error(e.error?.message || 'Invalid email or password');
+      },
     });
   }
 }

@@ -8,27 +8,35 @@ import { NotificationResponse } from '../../models/models';
   selector: 'app-notifications',
   imports: [],
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.css'
+  styleUrl: './notifications.component.css',
 })
 export class NotificationsComponent implements OnInit {
-  private api   = inject(ApiService);
-  private auth  = inject(AuthService);
+  private api = inject(ApiService);
+  private auth = inject(AuthService);
   private toast = inject(ToastService);
 
   notifications = signal<NotificationResponse[]>([]);
 
   ngOnInit() {
     const uid = this.auth.userId();
-    if (uid) this.api.getNotifications(uid).subscribe({ next: n => this.notifications.set(n), error: () => this.toast.error('Failed to load notifications') });
+    if (uid)
+      this.api
+        .getNotifications(uid)
+        .subscribe({
+          next: (n) => this.notifications.set(n),
+          error: () => this.toast.error('Failed to load notifications'),
+        });
   }
 
   markRead(n: NotificationResponse) {
     this.api.markRead(n.notificationId).subscribe({
-      next: updated => {
-        this.notifications.update(list => list.map(x => x.notificationId === n.notificationId ? updated : x));
-        this.auth.unreadCount.update(c => Math.max(0, c - 1));
+      next: (updated) => {
+        this.notifications.update((list) =>
+          list.map((x) => (x.notificationId === n.notificationId ? updated : x)),
+        );
+        this.auth.unreadCount.update((c) => Math.max(0, c - 1));
       },
-      error: () => this.toast.error('Failed to mark as read')
+      error: () => this.toast.error('Failed to mark as read'),
     });
   }
 }

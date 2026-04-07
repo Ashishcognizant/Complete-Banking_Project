@@ -6,9 +6,9 @@ import { ThemeService } from '../../core/theme.service';
   selector: 'app-home',
   imports: [RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  theme    = inject(ThemeService);
+  theme = inject(ThemeService);
   menuOpen = false;
 }

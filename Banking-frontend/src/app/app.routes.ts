@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard, adminGuard, analyticsGuard } from './core/auth.guard';
 
 export const routes: Routes = [
+  { path: '',         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), pathMatch: 'full' },
   { path: 'login',    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
   { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent) },
   {
@@ -20,5 +21,5 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: '' }
 ];

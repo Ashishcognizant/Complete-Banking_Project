@@ -1,0 +1,196 @@
+<!-- ── Navbar ── -->
+<nav class="home-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="brand-icon">🏦</span>
+      <span class="brand-name">CTS<span class="brand-accent">-BANK</span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#features">Personal Banking</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#about">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" (click)="theme.toggle()" [title]="theme.isDark() ? 'Switch to Light' : 'Switch to Dark'">
+        {{ theme.isDark() ? '☀️' : '🌙' }}
+      </button>
+      <a routerLink="/login" class="btn-nav-outline">Login</a>
+      <a routerLink="/register" class="btn-nav-accent">Register</a>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <button class="mobile-menu-btn" (click)="menuOpen = !menuOpen">☰</button>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (menuOpen) {
+    <div class="mobile-menu">
+      <a href="#features" (click)="menuOpen=false">Personal Banking</a>
+      <a href="#security" (click)="menuOpen=false">Security</a>
+      <a href="#about" (click)="menuOpen=false">About Us</a>
+      <a routerLink="/login" class="btn-nav-outline w-100 text-center">Login</a>
+      <a routerLink="/register" class="btn-nav-accent w-100 text-center">Register</a>
+    </div>
+  }
+</nav>
+
+<!-- ── Hero Section ── -->
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <p class="hero-tagline">Trusted Since 2024</p>
+      <h1 class="hero-title">
+        CTS-BANK.<br>
+        <span style="color:var(--accent)">Banking About You.</span>
+      </h1>
+      <p class="hero-desc">
+        Personal and Business Banking. Secure Transactions. People-first technology.
+        We're building communities and helping you build your financial future.
+      </p>
+      <div class="hero-btns">
+        <a routerLink="/register" class="btn-accent" style="padding:14px 32px;font-size:1rem">
+          Register Yourself →
+        </a>
+        <a routerLink="/login" class="btn-outline" style="padding:14px 32px;font-size:1rem">
+          Online Banking Login
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card-title">Quick Access</p>
+      <a routerLink="/login" class="hero-card-link">👤 Online Banking Login →</a>
+      <a routerLink="/register" class="hero-card-link">🏦 Register Yourself →</a>
+      <a href="#security" class="hero-card-link">🔒 Security Center →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features Section ── -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <p class="section-tag">What We Offer</p>
+    <h2 class="section-title">Everything You Need in One Place</h2>
+    <p class="section-sub">Manage your finances with ease using our comprehensive banking platform</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(212,168,67,.12);color:var(--accent)">💳</div>
+        <h3>Personal Banking</h3>
+        <p>Savings accounts, current accounts, and fixed deposits with competitive interest rates.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(59,130,246,.12);color:#3b82f6">📊</div>
+        <h3>Smart Analytics</h3>
+        <p>Track your spending patterns, generate financial reports and gain insights into your finances.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(34,197,94,.12);color:#22c55e">⚡</div>
+        <h3>Instant Transfers</h3>
+        <p>Send and receive money instantly. Deposit and withdraw with zero hassle, 24/7.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(239,68,68,.12);color:#ef4444">🔔</div>
+        <h3>Real-time Alerts</h3>
+        <p>Get instant notifications for every transaction. Stay informed about your account activity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(168,85,247,.12);color:#a855f7">🛡️</div>
+        <h3>BCrypt Security</h3>
+        <p>Your passwords are protected with industry-standard BCrypt encryption. Your data is safe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(245,158,11,.12);color:#f59e0b">👥</div>
+        <h3>Role-Based Access</h3>
+        <p>Customer, Officer, and Admin roles with tailored dashboards and permissions for each.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Security Section ── -->
+<section class="section" id="security">
+  <div class="section-inner">
+    <p class="section-tag">Your Safety First</p>
+    <h2 class="section-title">Bank with Confidence</h2>
+
+    <div class="security-grid">
+      <div class="security-card">
+        <span class="sec-icon">🔐</span>
+        <h4>BCrypt Encryption</h4>
+        <p>All passwords hashed with BCrypt — never stored in plain text.</p>
+      </div>
+      <div class="security-card">
+        <span class="sec-icon">🎫</span>
+        <h4>JWT Authentication</h4>
+        <p>Stateless JWT tokens secure every API request end-to-end.</p>
+      </div>
+      <div class="security-card">
+        <span class="sec-icon">🚪</span>
+        <h4>Role-Based Guards</h4>
+        <p>Route guards ensure users only access what they're authorized for.</p>
+      </div>
+      <div class="security-card">
+        <span class="sec-icon">🌐</span>
+        <h4>Microservices Architecture</h4>
+        <p>Isolated services mean a breach in one area never affects others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA Section ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready to Start Banking Smarter?</h2>
+    <p>Join thousands of customers who trust CTS-BANK for their financial needs.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+      <a routerLink="/register" class="btn-accent" style="padding:14px 36px;font-size:1rem">Register Yourself</a>
+      <a routerLink="/login" class="btn-outline" style="padding:14px 36px;font-size:1rem">Login to Banking</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="home-footer" id="about">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span style="font-size:2rem">🏦</span>
+      <span class="brand-name" style="font-size:1.4rem">CTS<span class="brand-accent">-BANK</span></span>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-top:8px;max-width:240px">
+        Secure Microservices Banking Platform built with Angular & Spring Boot.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a routerLink="/login">Online Banking</a>
+      <a routerLink="/register">Register</a>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Services</h4>
+      <a href="#services">Personal Banking</a>
+      <a href="#services">Business Banking</a>
+      <a href="#services">Analytics</a>
+      <a href="#services">Notifications</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Technology</h4>
+      <a href="#">Angular 21</a>
+      <a href="#">Spring Boot 3</a>
+      <a href="#">Microservices</a>
+      <a href="#">JWT + BCrypt</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 CTS-BANK. All rights reserved. &nbsp;|&nbsp; 🔒 Protected by BCrypt Encryption</p>
+  </div>
+</footer>
